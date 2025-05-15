@@ -1,39 +1,46 @@
-import React from 'react'
-import './Sidebar.css'
-import {assets} from '../../assets/assets'
+import React, { useState } from "react";
+import "./Sidebar.css";
+import { assets } from "../../assets/assets";
 const Sidebar = () => {
+  const [extended, setExtended] = useState(false);
   return (
-    <div className='sidebar'>
-        <div className="top">
-            <img className='menu' src={assets.menu_icon} alt="" srcset="" />
-            <div className="new-chat">
-                <img src={assets.plus_icon} alt="" srcset="" />
-                <p>New Chat</p>
-            </div>
-            <div className="recent">
-                <p className='recent-title'>Recent Chats'</p>
-                <div className="recent-entry">
-                    <img src={assets.message_icon} alt="" srcset="" />
-                    <p>What is React ...</p>
-                </div>
-            </div>
+    <div className="sidebar">
+      <div className="top">
+        {/* Check if extended is true to toggle the menu */}
+        <img onClick={() => setExtended(prev=>!prev)} className="menu" src={assets.menu_icon} alt="" srcset="" />
+        <div className="new-chat">
+          <img src={assets.plus_icon} alt="" srcset="" />
+          {extended ? <p>New Chat</p> : null}
         </div>
-        <div className="bottom">
-            <div className="bottom-item recent-entry">
-                <img src={assets.question_icon} alt="" srcset="" />
-                <p>Help</p>
+        {extended ? (
+          <div className="recent">
+            <p className="recent-title">Recent Chats'</p>
+            <div className="recent-entry">
+              <img src={assets.message_icon} alt="" srcset="" />
+              <p>What is React ...</p>
             </div>
-            <div className="bottom-item recent-entry">
-                <img src={assets.history_icon} alt="" srcset="" />
-                <p>Activity</p>
-            </div>
-            <div className="bottom-item recent-entry">
-                <img src={assets.setting_icon} alt="" srcset="" />
-                <p>Settings</p>
-            </div>
+          </div>
+        ) : null}
+      </div>
+      <div className="bottom">
+        <div className="bottom-item recent-entry">
+          <img src={assets.question_icon} alt="" srcset="" />
+          {/* Check if extended is true to toggle the text */}
+          {extended ? <p>Help</p> : null}
         </div>
+        <div className="bottom-item recent-entry">
+          <img src={assets.history_icon} alt="" srcset="" />
+          {/* Check if extended is true to toggle the text */}
+          {extended ? <p>Activity</p>: null}
+        </div>
+        <div className="bottom-item recent-entry">
+          <img src={assets.setting_icon} alt="" srcset="" />
+            {/* Check if extended is true to toggle the text */}
+            {extended ? <p>Settings</p>: null}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
